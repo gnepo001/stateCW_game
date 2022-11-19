@@ -5,12 +5,13 @@ class CrosshairCamera(pygame.sprite.Sprite):
         super().__init__(group)
         self.image = pygame.image.load("./assets/crosshair.png")
         self.rect = self.image.get_rect(center=pos)
+        self.visible = True
 
         self.direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
         self.speed = 400
 
-    def input(self):
+    def input(self,):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_UP]:
@@ -26,6 +27,9 @@ class CrosshairCamera(pygame.sprite.Sprite):
             self.direction.x = -1
         else:
             self.direction.x = 0
+        
+        if keys[pygame.K_c]:
+            print(self.pos.x,self.pos.y)
 
     def move(self,dt):
         #normilizing a vector

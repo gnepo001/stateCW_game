@@ -1,14 +1,13 @@
 import pygame
 
 class Army(pygame.sprite.Sprite):
-    def __init__(self,pos,group,size,speed,visible=True):
+    def __init__(self,pos,group,size,speed):
         super().__init__(group)
         self.size = size
         self.speed = speed
         self.image = pygame.image.load("./assets/army.png")
         self.rect = self.image.get_rect(center=pos)
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.visible = visible
 
         self.direction = pygame.math.Vector2()
 

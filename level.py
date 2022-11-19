@@ -1,6 +1,8 @@
 import pygame
 from camera import CrosshairCamera
 from sprites import quickCreate
+from army import Army
+from state import States
 
 class Level:
     def __init__(self):
@@ -13,8 +15,10 @@ class Level:
         self.display_surface = pygame.display.get_surface()
         #load map
         quickCreate(pos=(0,0),surf=pygame.image.load('./assets/map.png').convert_alpha(),groups=self.all_sprites)
-
+        states = States(group=self.all_sprites)
+        
         #set player to camera 
+        self.army1 = Army((1000,1000),self.all_sprites,50,100)
         self.player = CrosshairCamera((1000,1000),self.all_sprites)
     
     def run(self,dt):
@@ -22,7 +26,8 @@ class Level:
         #draw and update all sprites
         self.all_sprites.custom_draw(self.player)
         self.all_sprites.update(dt)
-
+       
+       
 #off set sprites to camera movement
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
